@@ -846,9 +846,9 @@ public class IPluginManagerImpl extends IPluginManager.Stub {
                         } catch (NameNotFoundException e) {
                         }
                         if (!mHostRequestedPermission.contains(requestedPermission) && b) {
-                            Log.e(TAG, "No Permission %s", requestedPermission);
-                            new File(apkfile).delete();
-                            return PluginManager.INSTALL_FAILED_NO_REQUESTEDPERMISSION;
+                            Log.w(TAG, "No Permission %s", requestedPermission);
+//                            new File(apkfile).delete();
+//                            return PluginManager.INSTALL_FAILED_NO_REQUESTEDPERMISSION;
                         }
                     }
                 }
@@ -886,9 +886,9 @@ public class IPluginManagerImpl extends IPluginManager.Stub {
                             } catch (NameNotFoundException e) {
                             }
                             if (!mHostRequestedPermission.contains(requestedPermission) && b) {
-                                Log.e(TAG, "No Permission %s", requestedPermission);
-                                new File(apkfile).delete();
-                                return PluginManager.INSTALL_FAILED_NO_REQUESTEDPERMISSION;
+                                Log.w(TAG, "No Permission %s", requestedPermission);
+//                                new File(apkfile).delete();
+//                                return PluginManager.INSTALL_FAILED_NO_REQUESTEDPERMISSION;
                             }
                         }
                     }
@@ -1233,7 +1233,7 @@ public class IPluginManagerImpl extends IPluginManager.Stub {
 
     @Override
     public void onActivityDestory(ActivityInfo stubInfo, ActivityInfo targetInfo) throws RemoteException {
-        mActivityManagerService.onActivityDestory(Binder.getCallingPid(), Binder.getCallingUid(), stubInfo, targetInfo);
+        mActivityManagerService.onActivityDestroy(Binder.getCallingPid(), Binder.getCallingUid(), stubInfo, targetInfo);
     }
 
     @Override
@@ -1243,7 +1243,7 @@ public class IPluginManagerImpl extends IPluginManager.Stub {
 
     @Override
     public void onServiceDestory(ServiceInfo stubInfo, ServiceInfo targetInfo) throws RemoteException {
-        mActivityManagerService.onServiceDestory(Binder.getCallingPid(), Binder.getCallingUid(), stubInfo, targetInfo);
+        mActivityManagerService.onServiceDestroy(Binder.getCallingPid(), Binder.getCallingUid(), stubInfo, targetInfo);
     }
 
     @Override
@@ -1257,12 +1257,12 @@ public class IPluginManagerImpl extends IPluginManager.Stub {
     }
 
     public void onDestroy() {
-        mActivityManagerService.onDestory();
+        mActivityManagerService.onDestroy();
     }
 
     @Override
     public void onActivtyOnNewIntent(ActivityInfo stubInfo, ActivityInfo targetInfo, Intent intent) throws RemoteException {
-        mActivityManagerService.onActivtyOnNewIntent(Binder.getCallingPid(), Binder.getCallingUid(), stubInfo, targetInfo, intent);
+        mActivityManagerService.onActivityOnNewIntent(Binder.getCallingPid(), Binder.getCallingUid(), stubInfo, targetInfo, intent);
     }
 
     @Override
